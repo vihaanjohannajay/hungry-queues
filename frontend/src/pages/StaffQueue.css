@@ -1,0 +1,69 @@
+.queue-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
+.queue-list { display: flex; flex-direction: column; gap: 12px; }
+.empty-queue { text-align: center; padding: 60px 32px; margin-top: 16px; }
+
+/* Live badge */
+.live-badge {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--font-display); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 99px;
+  border: 1px solid var(--border);
+}
+.live-badge.live   { color: var(--green); border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.08); }
+.live-badge.error  { color: var(--red);   border-color: rgba(248,113,113,0.3); background: rgba(248,113,113,0.08); }
+.live-badge.connecting { color: var(--muted); }
+
+.live-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: currentColor;
+}
+.live-badge.live .live-dot {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Queue cards */
+.queue-card { transition: border-color 0.2s; cursor: pointer; overflow: hidden; }
+.queue-card.late     { border-color: rgba(248,113,113,0.4); }
+.queue-card.expanded { border-color: var(--accent); }
+.queue-card.new-order {
+  border-color: var(--green);
+  animation: newOrderPulse 0.5s ease;
+}
+
+@keyframes newOrderPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.01); }
+  100% { transform: scale(1); }
+}
+
+/* New order banner */
+.new-order-banner {
+  background: rgba(74,222,128,0.12);
+  color: var(--green);
+  font-family: var(--font-display);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 6px 20px;
+  border-bottom: 1px solid rgba(74,222,128,0.2);
+  animation: fadeUp 0.3s ease;
+}
+
+.queue-row { display: flex; align-items: center; gap: 16px; }
+
+.queue-token { font-family: var(--font-display); font-size: 28px; font-weight: 800; min-width: 60px; color: var(--accent); letter-spacing: -0.02em; }
+
+.queue-info { flex: 1; }
+.queue-stall { font-weight: 600; font-size: 15px; font-family: var(--font-display); }
+.queue-time  { font-size: 13px; color: var(--muted); margin-top: 2px; display: flex; align-items: center; gap: 8px; }
+
+.wait-badge { font-size: 11px; font-weight: 700; background: rgba(251,191,36,0.15); color: var(--accent2); border-radius: 99px; padding: 2px 8px; font-family: var(--font-display); }
+.wait-badge.late { background: rgba(248,113,113,0.15); color: var(--red); }
+
+.queue-actions { display: flex; align-items: center; gap: 12px; }
+.expand-icon { font-size: 11px; color: var(--muted); width: 20px; text-align: center; }
+
+.order-details { padding-top: 4px; }
+.detail-row { display: flex; justify-content: space-between; font-size: 14px; padding: 6px 0; border-bottom: 1px solid var(--border); color: var(--muted); }
+.detail-row:last-child { border-bottom: none; }
+.detail-row.total-row { color: var(--text); font-family: var(--font-display); font-weight: 700; font-size: 15px; padding-top: 10px; }

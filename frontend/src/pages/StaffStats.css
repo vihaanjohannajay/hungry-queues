@@ -1,0 +1,21 @@
+.tab-bar { display: flex; gap: 8px; margin-bottom: 28px; border-bottom: 1px solid var(--border); }
+.tab-btn { background: transparent; color: var(--muted); border: none; border-bottom: 2px solid transparent; padding: 10px 20px; font-family: var(--font-display); font-size: 14px; font-weight: 600; margin-bottom: -1px; transition: all 0.15s; }
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.revenue-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.revenue-row { display: flex; align-items: center; gap: 16px; }
+.rev-rank { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--muted); min-width: 32px; }
+.rev-info { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.rev-name { font-weight: 600; font-size: 15px; font-family: var(--font-display); }
+.rev-bar-wrap { height: 6px; background: var(--surface2); border-radius: 99px; overflow: hidden; }
+.rev-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 99px; transition: width 0.6s ease; }
+.rev-meta { font-size: 12px; color: var(--muted); }
+.rev-amount { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--accent2); min-width: 80px; text-align: right; }
+.rev-total { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-color: var(--accent); margin-top: 4px; }
+
+.daily-section { display: flex; flex-direction: column; gap: 28px; }
+.daily-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.daily-card { text-align: center; padding: 16px 12px; }
+.daily-stall { font-size: 12px; color: var(--muted); margin-bottom: 8px; font-family: var(--font-display); font-weight: 600; }
+.daily-count { font-family: var(--font-display); font-size: 36px; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 4px; }

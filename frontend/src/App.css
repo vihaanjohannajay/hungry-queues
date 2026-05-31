@@ -1,0 +1,21 @@
+.app-wrap { min-height: 100vh; }
+
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 32px;
+  background: rgba(15,14,13,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo { font-family: var(--font-display); font-size: 18px; font-weight: 700; cursor: pointer; color: var(--accent); letter-spacing: -0.02em; }
+.nav-links { display: flex; gap: 8px; }
+
+.nav-btn { background: transparent; color: var(--muted); border: 1px solid transparent; padding: 8px 16px; border-radius: var(--radius-sm); font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.02em; transition: all 0.15s; }
+.nav-btn:hover { color: var(--text); border-color: var(--border); }
+.nav-btn.active { color: var(--accent); border-color: var(--accent); background: rgba(249,115,22,0.08); }
+
+.page { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+.page-title { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px; }
+.page-sub { color: var(--muted); margin-bottom: 32px; }

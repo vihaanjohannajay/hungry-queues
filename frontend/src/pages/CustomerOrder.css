@@ -1,0 +1,28 @@
+.stall-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+
+.stall-chip { display: flex; flex-direction: column; padding: 12px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); cursor: pointer; transition: all 0.15s; min-width: 130px; }
+.stall-chip:hover { border-color: var(--accent); }
+.stall-chip.active { border-color: var(--accent); background: rgba(249,115,22,0.08); }
+.stall-name { font-family: var(--font-display); font-weight: 600; font-size: 14px; }
+.stall-prep { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+.menu-section { margin-top: 8px; }
+.menu-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+
+.cart-pill { background: rgba(249,115,22,0.15); color: var(--accent); border: 1px solid rgba(249,115,22,0.3); border-radius: 99px; padding: 6px 16px; font-size: 13px; font-weight: 600; font-family: var(--font-display); }
+
+.menu-list { display: flex; flex-direction: column; gap: 10px; }
+.menu-item { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.menu-item-info { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+.menu-item-name { font-weight: 500; font-size: 15px; }
+.menu-item-price { color: var(--accent2); font-size: 13px; font-weight: 600; font-family: var(--font-display); }
+
+.qty-control { display: flex; align-items: center; gap: 10px; }
+.qty-btn { width: 30px; height: 30px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border); color: var(--text); font-size: 16px; display: flex; align-items: center; justify-content: center; }
+.qty-btn:hover { border-color: var(--accent); color: var(--accent); }
+.qty-num { font-family: var(--font-display); font-weight: 700; min-width: 20px; text-align: center; }
+
+.add-btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: var(--radius-sm); padding: 6px 16px; font-weight: 600; font-size: 13px; font-family: var(--font-display); }
+.add-btn:hover { background: rgba(249,115,22,0.1); }
+
+.order-bar { display: flex; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--accent); border-radius: var(--radius); padding: 16px 20px; margin-top: 24px; position: sticky; bottom: 24px; }
