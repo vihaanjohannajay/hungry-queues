@@ -1,3 +1,4 @@
+import { api } from '../api.js'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import './CustomerToken.css'
@@ -9,7 +10,7 @@ export default function CustomerToken() {
 
   useEffect(() => {
     if (!state?.order_id) return
-    fetch(`/api/orders/${state.order_id}/items`).then(r => r.json()).then(setItems)
+    fetch(api(`/api/orders/${state.order_id}/items`)).then(r => r.json()).then(setItems)
   }, [state])
 
   if (!state?.token_no) {

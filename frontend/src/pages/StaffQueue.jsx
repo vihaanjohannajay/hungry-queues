@@ -1,3 +1,4 @@
+import { api } from '../api.js'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import './StaffQueue.css'
 
@@ -12,15 +13,13 @@ export default function StaffQueue() {
   const [liveStatus, setLiveStatus]   = useState('connecting')
   const [lastRefresh, setLastRefresh] = useState(null)
 
-  // refs so the async loop always sees latest values without restarting
   const latestIdRef   = useRef(null)
   const countRef      = useRef(null)
   const pollingActive = useRef(true)
 
-  // ── full queue fetch ──────────────────────────────────────
   const fetchQueue = useCallback(async () => {
     try {
-      const data = await fetch('/api/orders/queue').then(r => r.json())
+      const data = await fetch(api('/api/orders/queue')).then(r => r.json())
       setQueue(data)
       setLastRefresh(new Date())
       setLiveStatus('live')
@@ -35,9 +34,6 @@ export default function StaffQueue() {
     }
   }, [])
 
-  // ── async polling loop ────────────────────────────────────
-  // Every POLL_INTERVAL ms, hits the lightweight /poll endpoint.
-  // Only does a full fetch when something actually changed.
   useEffect(() => {
     pollingActive.current = true
 
@@ -47,7 +43,7 @@ export default function StaffQueue() {
         if (!pollingActive.current) break
 
         try {
-          const snapshot = await fetch('/api/orders/queue/poll').then(r => r.json())
+          const snapshot = await fetch(api('/api/orders/queue/poll')).then(r => r.json())
           const changed  =
             snapshot.count     !== countRef.current ||
             snapshot.latest_id !== latestIdRef.current
@@ -82,21 +78,19 @@ export default function StaffQueue() {
     return () => { pollingActive.current = false }
   }, [fetchQueue])
 
-  // ── expand to see order items ─────────────────────────────
   const toggleExpand = async (order_id) => {
     if (expanded === order_id) { setExpanded(null); return }
     setExpanded(order_id)
     if (!orderItems[order_id]) {
-      const data = await fetch(`/api/orders/${order_id}/items`).then(r => r.json())
+      const data = await fetch(api(`/api/orders/${order_id}/items`)).then(r => r.json())
       setOrderItems(prev => ({ ...prev, [order_id]: data }))
     }
   }
 
-  // ── mark as served ────────────────────────────────────────
   const serveOrder = async (order_id) => {
     setServing(order_id)
     try {
-      await fetch(`/api/orders/${order_id}/serve`, { method: 'PATCH' })
+      await fetch(api(`/api/orders/${order_id}/serve`), { method: 'PATCH' })
       setQueue(prev => prev.filter(o => o.order_id !== order_id))
       if (expanded === order_id) setExpanded(null)
       countRef.current = Math.max(0, (countRef.current || 1) - 1)

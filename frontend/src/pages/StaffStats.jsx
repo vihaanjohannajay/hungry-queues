@@ -1,3 +1,4 @@
+import { api } from '../api.js'
 import { useState, useEffect } from 'react'
 import './StaffStats.css'
 
@@ -7,8 +8,8 @@ export default function StaffStats() {
   const [tab, setTab]         = useState('revenue')
 
   useEffect(() => {
-    fetch('/api/stats/revenue').then(r => r.json()).then(setRevenue)
-    fetch('/api/stats').then(r => r.json()).then(setStats)
+    fetch(api('/api/stats/revenue')).then(r => r.json()).then(setRevenue)
+    fetch(api('/api/stats')).then(r => r.json()).then(setStats)
   }, [])
 
   const maxRevenue = Math.max(...revenue.map(r => parseFloat(r.total_revenue) || 0), 1)

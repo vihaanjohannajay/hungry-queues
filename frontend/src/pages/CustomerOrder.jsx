@@ -1,3 +1,4 @@
+import { api } from '../api.js'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CustomerOrder.css'
@@ -12,14 +13,14 @@ export default function CustomerOrder() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch('/api/stalls').then(r => r.json()).then(setStalls)
+    fetch(api('/api/stalls')).then(r => r.json()).then(setStalls)
   }, [])
 
   useEffect(() => {
     if (!selectedStall) return
     setLoading(true)
     setCart({})
-    fetch(`/api/menu/${selectedStall.stall_id}`)
+    fetch(api(`/api/menu/${selectedStall.stall_id}`))
       .then(r => r.json())
       .then(data => { setMenu(data); setLoading(false) })
   }, [selectedStall])
@@ -39,7 +40,7 @@ export default function CustomerOrder() {
     const items = Object.entries(cart).map(([item_id, quantity]) => ({ item_id: parseInt(item_id), quantity }))
     setPlacing(true)
     try {
-      const res  = await fetch('/api/orders', {
+      const res  = await fetch(api('/api/orders'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ stall_id: selectedStall.stall_id, items })
